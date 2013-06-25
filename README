@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution Thrift-API-HiveClient2,
-version 0.001:
+version 0.002:
 
   Perl <=> HiveServer2 API, a wrapper around auto-generated Thrift
 

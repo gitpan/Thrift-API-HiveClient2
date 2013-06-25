@@ -12,4 +12,6 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Thrift-API-HiveClient2
-version: 0.001
+requires:
+  Thrift: 0
+version: 0.002
