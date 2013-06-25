@@ -1,0 +1,13 @@
+
+
+This archive contains the distribution Thrift-API-HiveClient2,
+version 0.001:
+
+  Perl <=> HiveServer2 API, a wrapper around auto-generated Thrift
+
+This software is copyright (c) 2013 by David Morel.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+
