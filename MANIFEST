@@ -4,6 +4,7 @@ MANIFEST
 META.yml
 Makefile.PL
 README
+README.md
 dist.ini
 lib/Thrift/API/HiveClient2.pm
 lib/Thrift/API/HiveClient2/Constants.pm

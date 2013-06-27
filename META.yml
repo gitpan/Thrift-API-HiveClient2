@@ -15,4 +15,4 @@ name: Thrift-API-HiveClient2
 requires:
   Moo: 0
   Thrift: 0
-version: 0.003
+version: 0.004

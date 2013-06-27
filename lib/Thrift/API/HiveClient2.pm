@@ -1,6 +1,6 @@
 package Thrift::API::HiveClient2;
 {
-  $Thrift::API::HiveClient2::VERSION = '0.003';
+  $Thrift::API::HiveClient2::VERSION = '0.004';
 }
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
@@ -195,7 +195,7 @@ sub execute {
 
                 my $idx = 0;
                 push @$result,
-                    [ map { $row->{colVals}[ $idx++ ]{$_} } @{ $column_keys->{$rv} } ];
+                    [ map { $row->{colVals}[ $idx++ ]{$_}->value() } @{ $column_keys->{$rv} } ];
             }
         }
         return $result, $has_more_rows;
@@ -241,7 +241,7 @@ Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 METHODS
 
@@ -268,11 +268,11 @@ Run an HiveQl statement on an open connection.
 
 =head2 fetch
 
-Returns an array(ref) of arrayrefs, like DBI's fetchall_arrayref.
+Returns an array(ref) of arrayrefs, like DBI's fetchall_arrayref, and a boolean
+indicator telling wether or not a subsequent call to fetch() will return more
+rows.
 
-    my $rv = $client->fetch( $rh, <maximum records to retrieve> );
-    or
-    my @rv = $client->fetch( $rh, <maximum records to retrieve> );
+    my ($rv, $has_more_rows) = $client->fetch( $rh, <maximum records to retrieve> );
 
 =head1 WARNING
 
