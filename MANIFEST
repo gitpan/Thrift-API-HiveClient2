@@ -4,11 +4,7 @@ MANIFEST
 META.yml
 Makefile.PL
 README
-cache/perl_modules
 dist.ini
-gen-perl/Thrift/API/HiveClient2/Constants.pm
-gen-perl/Thrift/API/HiveClient2/TCLIService.pm
-gen-perl/Thrift/API/HiveClient2/Types.pm
 lib/Thrift/API/HiveClient2.pm
 lib/Thrift/API/HiveClient2/Constants.pm
 lib/Thrift/API/HiveClient2/TCLIService.pm
@@ -20,3 +16,5 @@ t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+t/pod2htmd.tmp
+t/pod2htmi.tmp

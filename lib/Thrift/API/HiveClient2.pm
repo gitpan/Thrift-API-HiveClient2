@@ -1,31 +1,15 @@
+package Thrift::API::HiveClient2;
+{
+  $Thrift::API::HiveClient2::VERSION = '0.003';
+}
+{
+  $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
+}
+# ABSTRACT: Perl to HiveServer2 Thrift API wrapper
+
+
 use strict;
 use warnings;
-use Data::Dumper;
-use Storable ();
-
-# ABSTRACT: Perl <=> HiveServer2 API, a wrapper around auto-generated Thrift
-# files from the Hive project
-
-# !!!!!!!!!!!!!!! MEGA WARNING !!!!!!!!!!!!!!!
-#
-# Thrift in Perl currently doesn't support SASL, so authentication needs
-# to be disabled for now on HiveServer2 by setting this property in your
-# /etc/hive/conf/hive-site.xml. Although the property is documented, this
-# *value* -which disables the SASL server transport- is not, AFAICT.
-#
-# <property>
-#  <name>hive.server2.authentication</name>
-#  <value>NOSASL</value>
-# </property>
-#
-# !!!!!!!!!!! END OF MEGA WARNING !!!!!!!!!!!!!
-
-package Thrift::API::HiveClient2;
-
-{
-    $Thrift::API::HiveClient2::VERSION = '0.001';
-    $Thrift::API::HiveClient2::DIST    = 'Thrift-API-HiveClient2';
-}
 
 use Moo;
 use Carp;
@@ -46,8 +30,14 @@ has use_xs => (
     lazy    => 1,
 );
 
-has host => ( is => 'ro' );
-has port => ( is => 'ro' );
+has host => (
+    is      => 'ro',
+    default => sub {'localhost'},
+);
+has port => (
+    is      => 'ro',
+    default => sub {10_000},
+);
 
 # These exist to make testing with various other Thrift Implementation classes
 # easier, eventually.
@@ -82,6 +72,7 @@ sub BUILD {
         unless $self->_client;
 }
 
+
 sub _init_protocol {
     my $self = shift;
     my $err;
@@ -97,6 +88,7 @@ sub _init_protocol {
     # TODO Add warning when XS was asked but failed to load
     return $protocol;
 }
+
 
 sub connect {
     my ($self) = @_;
@@ -148,6 +140,7 @@ sub _build_session_handle {
     return $self->_session->{sessionHandle};
 }
 
+
 sub execute {
     my $self = shift;
     my ($query) = @_;    # make this a bit more flexible
@@ -161,7 +154,7 @@ sub execute {
 {
     # cache the column names we need to extract from the bloated data structure
     # (keyed on query)
-    my $column_keys; 
+    my $column_keys;
 
     sub fetch {
         my $self = shift;
@@ -238,11 +231,71 @@ sub AUTOLOAD {
 
 1;
 
-=head1 COPYRIGHT
+__END__
 
-Portions copied from Thrift::API::HiveClient are (c) 2012 by Stephen R. Scaffidi.
+=pod
 
-(c) David Morel 2013
+=head1 NAME
 
-(c) Booking.com 2013
+Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
+=head1 VERSION
+
+version 0.003
+
+=head1 METHODS
+
+=head2 new
+
+Initialize the client object with the Hive server parameters
+
+    my $client = Thrift::API::HiveClient2->new(
+        <host name or IP, defaults to localhost>,
+        <port, defaults to 10000>,
+    );
+
+=head2 connect
+
+Open the connection on the server declared in the object's constructor.
+
+     $client->connect() or die "Failed to connect";
+
+=head2 execute
+
+Run an HiveQl statement on an open connection.
+
+    my $rh = $client->execute( <HiveQL statement> );
+
+=head2 fetch
+
+Returns an array(ref) of arrayrefs, like DBI's fetchall_arrayref.
+
+    my $rv = $client->fetch( $rh, <maximum records to retrieve> );
+    or
+    my @rv = $client->fetch( $rh, <maximum records to retrieve> );
+
+=head1 WARNING
+
+Thrift in Perl currently doesn't support SASL, so authentication needs
+to be disabled for now on HiveServer2 by setting this property in your
+/etc/hive/conf/hive-site.xml. Although the property is documented, this
+*value* -which disables the SASL server transport- is not, AFAICT.
+
+  <property>
+    <name>hive.server2.authentication</name>
+    <value>NOSASL</value>
+  </property>
+
+=head1 AUTHOR
+
+David Morel <david.morel@amakuru.net>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2013 by David Morel & Booking.com. Portions are (c) R.Scaffidi, Thrift files are (c) Apache Software Foundation..
+
+This is free software, licensed under:
+
+  The Apache License, Version 2.0, January 2004
+
+=cut

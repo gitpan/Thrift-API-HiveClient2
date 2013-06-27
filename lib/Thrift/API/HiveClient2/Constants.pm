@@ -4,6 +4,12 @@
 # DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
 #
 package Thrift::API::HiveClient2::Constants;
+{
+  $Thrift::API::HiveClient2::Constants::VERSION = '0.003';
+}
+{
+  $Thrift::API::HiveClient2::Constants::DIST = 'Thrift-API-HiveClient2';
+}
 require 5.6.0;
 use strict;
 use warnings;
@@ -54,3 +60,29 @@ use constant TYPE_NAMES => {
 };
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Thrift::API::HiveClient2::Constants
+
+=head1 VERSION
+
+version 0.003
+
+=head1 AUTHOR
+
+David Morel <david.morel@amakuru.net>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2013 by David Morel & Booking.com. Portions are (c) R.Scaffidi, Thrift files are (c) Apache Software Foundation..
+
+This is free software, licensed under:
+
+  The Apache License, Version 2.0, January 2004
+
+=cut

@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Perl <=> HiveServer2 API, a wrapper around auto-generated Thrift",
+  "ABSTRACT" => "Perl to HiveServer2 Thrift API wrapper",
   "AUTHOR" => "David Morel <david.morel\@amakuru.net>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
@@ -17,13 +17,14 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "Thrift-API-HiveClient2",
   "EXE_FILES" => [],
-  "LICENSE" => "perl",
+  "LICENSE" => "apache",
   "NAME" => "Thrift::API::HiveClient2",
   "PREREQ_PM" => {
+    "Moo" => 0,
     "Thrift" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.002",
+  "VERSION" => "0.003",
   "test" => {
     "TESTS" => "t/*.t"
   }

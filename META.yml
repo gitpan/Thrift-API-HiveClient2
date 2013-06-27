@@ -1,5 +1,5 @@
 ---
-abstract: 'Perl <=> HiveServer2 API, a wrapper around auto-generated Thrift'
+abstract: 'Perl to HiveServer2 Thrift API wrapper'
 author:
   - 'David Morel <david.morel@amakuru.net>'
 build_requires: {}
@@ -7,11 +7,12 @@ configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.131560'
-license: perl
+license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Thrift-API-HiveClient2
 requires:
+  Moo: 0
   Thrift: 0
-version: 0.002
+version: 0.003
