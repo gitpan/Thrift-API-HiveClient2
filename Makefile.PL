@@ -20,11 +20,12 @@ my %WriteMakefileArgs = (
   "LICENSE" => "apache",
   "NAME" => "Thrift::API::HiveClient2",
   "PREREQ_PM" => {
+    "Class::Accessor" => 0,
     "Moo" => 0,
     "Thrift" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.004",
+  "VERSION" => "0.005",
   "test" => {
     "TESTS" => "t/*.t"
   }

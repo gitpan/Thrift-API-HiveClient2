@@ -13,6 +13,7 @@ meta-spec:
   version: 1.4
 name: Thrift-API-HiveClient2
 requires:
+  Class::Accessor: 0
   Moo: 0
   Thrift: 0
-version: 0.004
+version: 0.005
