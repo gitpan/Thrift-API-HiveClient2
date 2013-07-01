@@ -5,7 +5,7 @@
 #
 package Thrift::API::HiveClient2::Constants;
 {
-  $Thrift::API::HiveClient2::Constants::VERSION = '0.005';
+  $Thrift::API::HiveClient2::Constants::VERSION = '0.006';
 }
 {
   $Thrift::API::HiveClient2::Constants::DIST = 'Thrift-API-HiveClient2';
@@ -71,7 +71,7 @@ Thrift::API::HiveClient2::Constants
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 AUTHOR
 

@@ -17,3 +17,6 @@ Revision history for Thrift-API-HiveClient2
 
 0.005   2013-06-28
         Fixed missing Class::Accessor dep
+
+0.005   2013-07-01
+        Removed Test::Pod::Coverage failure
