@@ -16,4 +16,4 @@ requires:
   Class::Accessor: 0
   Moo: 0
   Thrift: 0
-version: 0.006
+version: 0.007
