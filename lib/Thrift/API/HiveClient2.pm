@@ -1,6 +1,6 @@
 package Thrift::API::HiveClient2;
 {
-  $Thrift::API::HiveClient2::VERSION = '0.007';
+  $Thrift::API::HiveClient2::VERSION = '0.008';
 }
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
@@ -37,6 +37,16 @@ has host => (
 has port => (
     is      => 'ro',
     default => sub {10_000},
+);
+
+# 1 hour default recv socket timeout. Increase for longer-running queries
+# called "timeout" for simplicity's sake, as this is how a user will experience
+# it: a time after which the Thrift stack will throw an exception if not
+# getting an answer from the server
+
+has timeout => (
+    is      => 'rw',
+    default => sub { 3_600 },
 );
 
 # These exist to make testing with various other Thrift Implementation classes
@@ -92,6 +102,7 @@ sub _init_protocol {
 
 sub connect {
     my ($self) = @_;
+    $self->_socket->setRecvTimeout($self->timeout * 1000);
     $self->_transport->open;
 }
 
@@ -144,11 +155,15 @@ sub _build_session_handle {
 sub execute {
     my $self = shift;
     my ($query) = @_;    # make this a bit more flexible
-    return $self->_client->ExecuteStatement(
+    my $rh = $self->_client->ExecuteStatement(
         Thrift::API::HiveClient2::TExecuteStatementReq->new(
             { sessionHandle => $self->_session_handle, statement => $query }
         )
     );
+    if ($rh->{status}{errorCode}) {
+        die "execute() failed: $rh->{errorMessage} (code: $rh->{errorCode})";
+    }
+    return $rh;
 }
 
 {
@@ -241,7 +256,7 @@ Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 METHODS
 
@@ -250,8 +265,9 @@ version 0.007
 Initialize the client object with the Hive server parameters
 
     my $client = Thrift::API::HiveClient2->new(
-        <host name or IP, defaults to localhost>,
-        <port, defaults to 10000>,
+        host    => <host name or IP, defaults to localhost>,
+        port    => <port, defaults to 10000>,
+        timeout => <seconds timeout, defaults to 1 hour>,
     );
 
 =head2 connect
