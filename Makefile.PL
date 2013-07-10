@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
     "Thrift" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.008",
+  "VERSION" => "0.009",
   "test" => {
     "TESTS" => "t/*.t"
   }

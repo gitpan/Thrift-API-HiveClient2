@@ -27,3 +27,6 @@ Revision history for Thrift-API-HiveClient2
 0.008   2013-07-10
         Added default timeout of 1h
         Die in case the server returns an error in execute()
+
+0.009   2013-07-10
+        Fixed bad error message

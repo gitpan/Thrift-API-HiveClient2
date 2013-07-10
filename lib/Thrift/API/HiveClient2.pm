@@ -1,6 +1,6 @@
 package Thrift::API::HiveClient2;
 {
-  $Thrift::API::HiveClient2::VERSION = '0.008';
+  $Thrift::API::HiveClient2::VERSION = '0.009';
 }
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
@@ -161,7 +161,7 @@ sub execute {
         )
     );
     if ($rh->{status}{errorCode}) {
-        die "execute() failed: $rh->{errorMessage} (code: $rh->{errorCode})";
+        die "execute() failed: $rh->{status}{errorMessage} (code: $rh->{status}{errorCode})";
     }
     return $rh;
 }
@@ -256,7 +256,7 @@ Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 METHODS
 
