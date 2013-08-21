@@ -1,6 +1,6 @@
 package Thrift::API::HiveClient2;
 {
-  $Thrift::API::HiveClient2::VERSION = '0.010';
+  $Thrift::API::HiveClient2::VERSION = '0.011';
 }
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
@@ -157,7 +157,7 @@ sub execute {
     my ($query) = @_;    # make this a bit more flexible
     my $rh = $self->_client->ExecuteStatement(
         Thrift::API::HiveClient2::TExecuteStatementReq->new(
-            { sessionHandle => $self->_session_handle, statement => $query }
+            { sessionHandle => $self->_session_handle, statement => $query, confOverlay => {} }
         )
     );
     if ($rh->{status}{errorCode}) {
@@ -247,6 +247,7 @@ sub AUTOLOAD {
     croak "No such method exists: $AUTOLOAD";
 }
 
+
 1;
 
 __END__
@@ -259,7 +260,7 @@ Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 METHODS
 
@@ -319,6 +320,14 @@ to be disabled for now on HiveServer2 by setting this property in your
     <name>hive.server2.authentication</name>
     <value>NOSASL</value>
   </property>
+
+=head1 CAVEATS
+
+The instance of hiveserver2 we have didn't return results encoded in UTF8, for
+the reason mentioned here: L<https://groups.google.com/a/cloudera.org/d/msg/cdh-user/AXeEuaFP0Ro/Txmn1OHleAsJ>
+
+So we had to change the init script for hive-server2 to make it behave, adding
+'-Dfile.encoding=UTF-8' to HADOOP_OPTS
 
 =head1 AUTHOR
 
