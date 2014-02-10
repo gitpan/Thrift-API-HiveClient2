@@ -1,6 +1,6 @@
 package Thrift::API::HiveClient2;
 {
-  $Thrift::API::HiveClient2::VERSION = '0.012';
+  $Thrift::API::HiveClient2::VERSION = '0.013';
 }
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
@@ -262,7 +262,12 @@ sub execute {
 
                 my $idx = 0;
                 push @$result,
-                    [ map { $row->{colVals}[ $idx++ ]{$_}->value() } @{ $column_keys->{$rv} } ];
+                    [
+                        map  { $_->value  }
+                        grep { defined $_ }
+                        map  { $row->{colVals}[ $idx++ ]{$_} }
+                        @{ $column_keys->{$rv} }
+                    ];
             }
         }
         return wantarray ? ( $result, $has_more_rows ) : ( @$result ? $result : undef );
@@ -313,7 +318,7 @@ Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 METHODS
 
