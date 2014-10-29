@@ -13,9 +13,7 @@ use Thrift::API::HiveClient2::Types;
 # HELPER FUNCTIONS AND STRUCTURES
 
 package Thrift::API::HiveClient2::TCLIService_OpenSession_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_OpenSession_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_OpenSession_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_OpenSession_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -84,9 +82,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_OpenSession_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_OpenSession_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_OpenSession_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_OpenSession_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -155,9 +151,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_CloseSession_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_CloseSession_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_CloseSession_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_CloseSession_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -226,9 +220,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_CloseSession_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_CloseSession_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_CloseSession_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_CloseSession_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -297,9 +289,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetInfo_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetInfo_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetInfo_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetInfo_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -368,9 +358,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetInfo_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetInfo_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetInfo_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetInfo_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -439,9 +427,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_ExecuteStatement_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_ExecuteStatement_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_ExecuteStatement_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_ExecuteStatement_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -510,9 +496,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_ExecuteStatement_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_ExecuteStatement_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_ExecuteStatement_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_ExecuteStatement_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -581,9 +565,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetTypeInfo_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetTypeInfo_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetTypeInfo_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetTypeInfo_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -652,9 +634,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetTypeInfo_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetTypeInfo_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetTypeInfo_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetTypeInfo_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -723,9 +703,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetCatalogs_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetCatalogs_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetCatalogs_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetCatalogs_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -794,9 +772,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetCatalogs_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetCatalogs_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetCatalogs_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetCatalogs_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -865,9 +841,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetSchemas_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetSchemas_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetSchemas_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetSchemas_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -936,9 +910,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetSchemas_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetSchemas_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetSchemas_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetSchemas_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1007,9 +979,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetTables_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetTables_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetTables_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetTables_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1078,9 +1048,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetTables_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetTables_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetTables_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetTables_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1149,9 +1117,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetTableTypes_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetTableTypes_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetTableTypes_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetTableTypes_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1220,9 +1186,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetTableTypes_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetTableTypes_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetTableTypes_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetTableTypes_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1291,9 +1255,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetColumns_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetColumns_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetColumns_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetColumns_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1362,9 +1324,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetColumns_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetColumns_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetColumns_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetColumns_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1433,9 +1393,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetFunctions_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetFunctions_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetFunctions_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetFunctions_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1504,9 +1462,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetFunctions_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetFunctions_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetFunctions_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetFunctions_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1575,9 +1531,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetOperationStatus_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetOperationStatus_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetOperationStatus_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetOperationStatus_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1646,9 +1600,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetOperationStatus_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetOperationStatus_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetOperationStatus_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetOperationStatus_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1717,9 +1669,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_CancelOperation_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_CancelOperation_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_CancelOperation_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_CancelOperation_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1788,9 +1738,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_CancelOperation_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_CancelOperation_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_CancelOperation_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_CancelOperation_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1859,9 +1807,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_CloseOperation_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_CloseOperation_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_CloseOperation_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_CloseOperation_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -1930,9 +1876,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_CloseOperation_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_CloseOperation_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_CloseOperation_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_CloseOperation_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -2001,9 +1945,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -2072,9 +2014,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_GetResultSetMetadata_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -2143,9 +2083,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_FetchResults_args;
-{
-  $Thrift::API::HiveClient2::TCLIService_FetchResults_args::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_FetchResults_args::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_FetchResults_args::DIST = 'Thrift-API-HiveClient2';
 }
@@ -2214,9 +2152,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIService_FetchResults_result;
-{
-  $Thrift::API::HiveClient2::TCLIService_FetchResults_result::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIService_FetchResults_result::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIService_FetchResults_result::DIST = 'Thrift-API-HiveClient2';
 }
@@ -2285,9 +2221,7 @@ sub write {
 }
 
 package Thrift::API::HiveClient2::TCLIServiceIf;
-{
-  $Thrift::API::HiveClient2::TCLIServiceIf::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIServiceIf::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIServiceIf::DIST = 'Thrift-API-HiveClient2';
 }
@@ -2408,9 +2342,7 @@ sub FetchResults{
 }
 
 package Thrift::API::HiveClient2::TCLIServiceRest;
-{
-  $Thrift::API::HiveClient2::TCLIServiceRest::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIServiceRest::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIServiceRest::DIST = 'Thrift-API-HiveClient2';
 }
@@ -2538,9 +2470,7 @@ sub FetchResults{
 }
 
 package Thrift::API::HiveClient2::TCLIServiceClient;
-{
-  $Thrift::API::HiveClient2::TCLIServiceClient::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIServiceClient::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIServiceClient::DIST = 'Thrift-API-HiveClient2';
 }
@@ -3245,9 +3175,7 @@ sub recv_FetchResults{
   die "FetchResults failed: unknown result";
 }
 package Thrift::API::HiveClient2::TCLIServiceProcessor;
-{
-  $Thrift::API::HiveClient2::TCLIServiceProcessor::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::TCLIServiceProcessor::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::TCLIServiceProcessor::DIST = 'Thrift-API-HiveClient2';
 }
@@ -3498,13 +3426,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Thrift::API::HiveClient2::TCLIService_OpenSession_args
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 AUTHOR
 
@@ -3512,7 +3442,7 @@ David Morel <david.morel@amakuru.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Morel & Booking.com. Portions are (c) R.Scaffidi, Thrift files are (c) Apache Software Foundation..
+This software is Copyright (c) 2014 by David Morel & Booking.com. Portions are (c) R.Scaffidi, Thrift files are (c) Apache Software Foundation..
 
 This is free software, licensed under:
 

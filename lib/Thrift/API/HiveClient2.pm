@@ -1,12 +1,10 @@
 package Thrift::API::HiveClient2;
-{
-  $Thrift::API::HiveClient2::VERSION = '0.013';
-}
+$Thrift::API::HiveClient2::VERSION = '0.014';
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
 }
-# ABSTRACT: Perl to HiveServer2 Thrift API wrapper
 
+# ABSTRACT: Perl to HiveServer2 Thrift API wrapper
 
 use strict;
 use warnings;
@@ -38,6 +36,10 @@ has port => (
     is      => 'ro',
     default => sub {10_000},
 );
+has sasl => (
+    is      => 'ro',
+    default => 0,
+);
 
 # 1 hour default recv socket timeout. Increase for longer-running queries
 # called "timeout" for simplicity's sake, as this is how a user will experience
@@ -52,10 +54,11 @@ has timeout => (
 # These exist to make testing with various other Thrift Implementation classes
 # easier, eventually.
 
-has _socket    => ( is => 'rwp' );
-has _transport => ( is => 'rwp' );
-has _protocol  => ( is => 'rwp' );
-has _client    => ( is => 'rwp' );
+has _socket    => ( is => 'rwp', lazy => 1 );
+has _transport => ( is => 'rwp', lazy => 1 );
+has _protocol  => ( is => 'rwp', lazy => 1 );
+has _client    => ( is => 'rwp', lazy => 1 );
+has _sasl      => ( is => 'rwp', lazy => 1 );
 
 # setters implied by the 'rwp' mode on the attrs above.
 
@@ -63,6 +66,19 @@ sub _set_socket    { $_[0]->{_socket}    = $_[1] }
 sub _set_transport { $_[0]->{_transport} = $_[1] }
 sub _set_protocol  { $_[0]->{_protocol}  = $_[1] }
 sub _set_client    { $_[0]->{_client}    = $_[1] }
+
+sub _set_sasl {
+    return if !$_[1];
+
+    require Authen::SASL;
+    require Authen::SASL::XS;
+    Authen::SASL->import('XS');
+
+    require Thrift::SASL::Transport;
+    Thrift::SASL::Transport->import;
+
+    $_[0]->{_sasl} = Authen::SASL->new( mechanism => 'GSSAPI' );
+}
 
 # after constructon is complete, initialize any attributes that
 # weren't set in the constructor.
@@ -72,8 +88,17 @@ sub BUILD {
     $self->_set_socket( Thrift::Socket->new( $self->host, $self->port ) )
         unless $self->_socket;
 
-    $self->_set_transport( Thrift::BufferedTransport->new( $self->_socket ) )
-        unless $self->_transport;
+    $self->_set_sasl(1) if ( $self->sasl && !$self->_sasl );
+
+    if ( !$self->_transport ) {
+        my $transport = Thrift::BufferedTransport->new( $self->_socket );
+        if ( $self->_sasl ) {
+            $self->_set_transport( Thrift::SASL::Transport->new( $transport, $self->_sasl ) );
+        }
+        else {
+            $self->_set_transport($transport);
+        }
+    }
 
     $self->_set_protocol( $self->_init_protocol( $self->_transport ) )
         unless $self->_protocol;
@@ -312,13 +337,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 METHODS
 
@@ -377,8 +404,8 @@ number of rows to be retrieved if it looks like a positive integer:
 
 =head1 WARNING
 
-Thrift in Perl currently doesn't support SASL, so authentication needs
-to be disabled for now on HiveServer2 by setting this property in your
+Thrift in Perl originally did not support SASL, so authentication needed
+to be disabled on HiveServer2 by setting this property in your
 /etc/hive/conf/hive-site.xml. Although the property is documented, this
 *value* -which disables the SASL server transport- is not, AFAICT.
 
@@ -386,6 +413,11 @@ to be disabled for now on HiveServer2 by setting this property in your
     <name>hive.server2.authentication</name>
     <value>NOSASL</value>
   </property>
+
+Starting with 0.014, support for secure clusters has been added thanks to
+Thrift::SASL::Transport. This behaviour is set by passing sasl => 1 to the
+constructor. It has been tested with hive.server2.authentication = KERBEROS.
+It of course requires a valid credentials cache (kinit) or keytab.
 
 =head1 CAVEATS
 
@@ -395,13 +427,17 @@ the reason mentioned here: L<https://groups.google.com/a/cloudera.org/d/msg/cdh-
 So we had to change the init script for hive-server2 to make it behave, adding
 '-Dfile.encoding=UTF-8' to HADOOP_OPTS
 
+=head1 CONTRIBUTORS
+
+Burak Gürsoy (BURAK)
+
 =head1 AUTHOR
 
 David Morel <david.morel@amakuru.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Morel & Booking.com. Portions are (c) R.Scaffidi, Thrift files are (c) Apache Software Foundation..
+This software is Copyright (c) 2014 by David Morel & Booking.com. Portions are (c) R.Scaffidi, Thrift files are (c) Apache Software Foundation..
 
 This is free software, licensed under:
 
