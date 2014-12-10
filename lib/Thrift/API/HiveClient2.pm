@@ -1,5 +1,5 @@
 package Thrift::API::HiveClient2;
-$Thrift::API::HiveClient2::VERSION = '0.014';
+$Thrift::API::HiveClient2::VERSION = '0.015';
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
 }
@@ -11,6 +11,7 @@ use warnings;
 
 use Moo;
 use Carp;
+use Scalar::Util 'reftype';
 
 use Thrift;
 use Thrift::Socket;
@@ -68,7 +69,8 @@ sub _set_protocol  { $_[0]->{_protocol}  = $_[1] }
 sub _set_client    { $_[0]->{_client}    = $_[1] }
 
 sub _set_sasl {
-    return if !$_[1];
+    my ($self, $sasl) = @_;
+    return if !$sasl;
 
     require Authen::SASL;
     require Authen::SASL::XS;
@@ -77,7 +79,13 @@ sub _set_sasl {
     require Thrift::SASL::Transport;
     Thrift::SASL::Transport->import;
 
-    $_[0]->{_sasl} = Authen::SASL->new( mechanism => 'GSSAPI' );
+    if ($sasl == 1) {
+        return $self->{_sasl} = Authen::SASL->new( mechanism => 'GSSAPI' );
+    }
+    elsif (reftype $sasl eq "HASH") {
+        return $self->{_sasl} = Authen::SASL->new( %$sasl );
+    }
+    die "Incorrect parameter passed to _set_sasl";
 }
 
 # after constructon is complete, initialize any attributes that
@@ -88,7 +96,7 @@ sub BUILD {
     $self->_set_socket( Thrift::Socket->new( $self->host, $self->port ) )
         unless $self->_socket;
 
-    $self->_set_sasl(1) if ( $self->sasl && !$self->_sasl );
+    $self->_set_sasl($self->sasl) if ( $self->sasl && !$self->_sasl );
 
     if ( !$self->_transport ) {
         my $transport = Thrift::BufferedTransport->new( $self->_socket );
@@ -225,7 +233,7 @@ sub execute {
         )
     );
     if ($rh->{status}{errorCode}) {
-        die "execute() failed: $rh->{status}{errorMessage} (code: $rh->{status}{errorCode})";
+        die __PACKAGE__ . "::execute: $rh->{status}{errorMessage}; HQL was: \"$query\"";
     }
     $self->_set__operation($rh);
     $self->_set__operation_handle($rh->{operationHandle});
@@ -345,7 +353,7 @@ Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 METHODS
 
@@ -392,37 +400,55 @@ retrieving the data):
         # ... do something with @$rv
     }
 
-This is the approach adopted in L<https://github.com/cloudera/hue/blob/master/apps/beeswax/src/beeswax/server/hive_server2_lib.py>
+This is the approach adopted in
+L<https://github.com/cloudera/hue/blob/master/apps/beeswax/src/beeswax/server/hive_server2_lib.py>
 
-Starting with version 0.12, we cache the operation handle and don't need it as a
-first parameter for the fetch() call. We want to be backward-compatible though,
-so depending on the type of the first parameter, we'll ignore it (since we
-cached it in the object and we can get it from there) or we'll use it as the
+Starting with version 0.12, we cache the operation handle and don't need it as
+a first parameter for the fetch() call. We want to be backward-compatible
+though, so depending on the type of the first parameter, we'll ignore it (since
+we cached it in the object and we can get it from there) or we'll use it as the
 number of rows to be retrieved if it looks like a positive integer:
 
      my $rv = $client->fetch( 10_000 );
 
 =head1 WARNING
 
-Thrift in Perl originally did not support SASL, so authentication needed
-to be disabled on HiveServer2 by setting this property in your
-/etc/hive/conf/hive-site.xml. Although the property is documented, this
-*value* -which disables the SASL server transport- is not, AFAICT.
+Thrift in Perl originally did not support SASL, so authentication needed to be
+disabled on HiveServer2 by setting this property in your
+/etc/hive/conf/hive-site.xml. Although the property is documented, this *value*
+-which disables the SASL server transport- is not, AFAICT.
 
-  <property>
-    <name>hive.server2.authentication</name>
-    <value>NOSASL</value>
-  </property>
+    <property>
+      <name>hive.server2.authentication</name>
+      <value>NOSASL</value>
+    </property>
 
 Starting with 0.014, support for secure clusters has been added thanks to
 Thrift::SASL::Transport. This behaviour is set by passing sasl => 1 to the
 constructor. It has been tested with hive.server2.authentication = KERBEROS.
 It of course requires a valid credentials cache (kinit) or keytab.
 
+Starting with 0.015, other authentication methods are supported, and driven by
+the content of the sasl property. When built using sasl => 0 or sasl => 1, the
+behaviour is unchanged. When passed a hashref of arguments that follow the
+L<Authen::SASL> syntax for object creation, it is passed directly to
+Authen::SASL, for instance:
+
+    {
+      mechanism  => 'PLAIN',
+      callback   => {
+        user     => $USER,
+        password => "foobar",
+      }
+    }
+
+Note that a server configured with NONE will happily accept the PLAIN method.
+
 =head1 CAVEATS
 
 The instance of hiveserver2 we have didn't return results encoded in UTF8, for
-the reason mentioned here: L<https://groups.google.com/a/cloudera.org/d/msg/cdh-user/AXeEuaFP0Ro/Txmn1OHleAsJ>
+the reason mentioned here:
+L<https://groups.google.com/a/cloudera.org/d/msg/cdh-user/AXeEuaFP0Ro/Txmn1OHleAsJ>
 
 So we had to change the init script for hive-server2 to make it behave, adding
 '-Dfile.encoding=UTF-8' to HADOOP_OPTS
