@@ -1,5 +1,5 @@
 package Thrift::API::HiveClient2;
-$Thrift::API::HiveClient2::VERSION = '0.015';
+$Thrift::API::HiveClient2::VERSION = '0.016';
 {
   $Thrift::API::HiveClient2::DIST = 'Thrift-API-HiveClient2';
 }
@@ -353,7 +353,7 @@ Thrift::API::HiveClient2 - Perl to HiveServer2 Thrift API wrapper
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 METHODS
 
